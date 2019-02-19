@@ -53,7 +53,7 @@ func TestIT_BedrockExample(t *testing.T) {
 	//Test Case 1: Verify Flux namespace
 	_flux, flux_err := k8s.RunKubectlAndGetOutputE(t, options, "get", "po", "--namespace=flux")
 	if flux_err != nil {
-		t.Fatal(err)
+		t.Fatal(flux_err)
 	}
 
 	strings.Contains(_flux, "flux")
