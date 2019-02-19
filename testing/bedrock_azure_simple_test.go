@@ -56,7 +56,7 @@ func TestIT_BedrockExample(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	return strings.Contains(_flux, "flux")
+	strings.Contains(_flux, "flux")
 	
 }
 
