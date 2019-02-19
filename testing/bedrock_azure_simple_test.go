@@ -4,6 +4,7 @@ import (
         "fmt"
 		"testing"
 		"os"
+		"strings"
 		
         "github.com/gruntwork-io/terratest/modules/random"
         "github.com/gruntwork-io/terratest/modules/terraform"
@@ -49,6 +50,14 @@ func TestIT_BedrockExample(t *testing.T) {
 
 	options := k8s.NewKubectlOptions("", kubeConfig)
 
-	k8s.RunKubectlAndGetOutputE(t, options, "get", "po", "--namespace=flux")
+	//Test Case 1: Verify Flux namespace
+	_flux, flux_err := k8s.RunKubectlAndGetOutputE(t, options, "get", "po", "--namespace=flux")
+	if flux_err != nil {
+		t.Fatal(err)
+	}
 
+	return strings.Contains(_flux, "flux")
+	
 }
+
+		
